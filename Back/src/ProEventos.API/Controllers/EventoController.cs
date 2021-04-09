@@ -25,7 +25,7 @@ namespace ProEventos.API.Controllers
                     EventoId = 2,
                     Tema = "Angular e suas Novidades", 
                     Local = "São Paulo",
-                    Lote = "2º Lote",
+                    Lote = "2º Lotes",
                     QtdPessoa = 350,
                     DataEvento = DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")
                  }   
