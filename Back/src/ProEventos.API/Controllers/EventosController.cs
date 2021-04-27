@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProEventos.Persistence;
 using ProEventos.Domain;
-using ProEventos.Persistence.Context;
 using ProEventos.Application.Contracts;
 using Microsoft.AspNetCore.Http;
+using ProEventos.Application.Dtos;
 
 namespace ProEventos.API.Controllers
 {
@@ -29,7 +25,8 @@ namespace ProEventos.API.Controllers
             try
             {
                 var eventos = await _eventoService.GetAllEventosAsync(true);
-                if(eventos == null) return NotFound("Nenhum Evento Encontrado");
+                if(eventos == null) return NoContent();
+
                 return Ok(eventos);
             }
             catch (Exception e)
@@ -44,7 +41,7 @@ namespace ProEventos.API.Controllers
             try
             {
                 var evento = await _eventoService.GetAllEventoByIdAsync(id, true);
-                if(evento == null) return NotFound("Evento por Id não encontrados.");
+                if(evento == null) return NoContent();
                 return Ok(evento);
             }
             catch (Exception e)
@@ -59,7 +56,7 @@ namespace ProEventos.API.Controllers
             try
             {
                 var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
-                if(evento == null) return NotFound("Eventos por tema não encontrados.");
+                if(evento == null) return NoContent();
                 return Ok(evento);
             }
             catch (Exception e)
@@ -69,7 +66,7 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Evento model)
+        public async Task<IActionResult> Post(EventoDto model)
         {
             try
             {
@@ -84,7 +81,7 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Evento model)
+        public async Task<IActionResult> Put(int id, EventoDto model)
         {
             try
             {
