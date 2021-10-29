@@ -8,7 +8,12 @@ import { take } from 'rxjs/operators';
   //{ providedIn: 'root'} // Comentado pois adicionamos esse serviço no App.Module na parte de providers
 )
 export class LoteService {
-  baseURL = 'http://localhost:5000/api/lotes';
+  // dotnet CLI
+  // baseURL = 'http://localhost:5000/api/lotes';
+
+  // Visual Studio
+  baseURL = 'https://localhost:44301/api/lotes';
+
   constructor(private http: HttpClient) { }
 
   public getLotesByEventoId(eventoId: number): Observable<Lote[]>{

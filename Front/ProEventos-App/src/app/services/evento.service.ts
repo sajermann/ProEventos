@@ -9,7 +9,11 @@ import { take } from 'rxjs/operators';
   //{providedIn: 'root'}
   )
 export class EventoService {
-baseURL = 'http://localhost:5000/api/eventos';
+// dotnet CLI
+// baseURL = 'http://localhost:5000/api/eventos';
+
+// Visual Studio
+baseURL = 'https://localhost:44301/api/eventos';
 constructor(private http: HttpClient) { }
 
 public getEventos(): Observable<Evento[]>{
